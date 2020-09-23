@@ -32,6 +32,8 @@ $$y_i=\sum_{kl}w_{kl}x_{(i+k,j+l)}$$
     - Avg. Pooling + Subsampling
     - Stride
     - Kernel 5x5
+<center><img src="../img/lenet.png" alt="fully connected" width="100%" /></center>
+
 - Aprende representaciones **jerárquicas** en el entrenamiento
     - Primeras capas -> características de bajo nivel (rayas, bolas)
     - Siguientes capas -> características de alto nivel (formas cada vez más complejas, uniones de características sencillas)
@@ -42,8 +44,31 @@ $$y_i=\sum_{kl}w_{kl}x_{(i+k,j+l)}$$
         - Filtro (Convolución)
         - No-linealidad (ReLU, Tanh, ...)
         - Pooling (Max. Pooling, Norma $L_p$)
+            - Usados con stride principalmente en las primeras capas
     - Clasificador
-        - Varias capas fully connected
+        - Varias capas fully connected (se pueden entender como convoluciones de tamaño1 también)
+    - Otras capas útiles:
+        - *Residual bypass connection*
+            - resnet
+<center><img src="../img/cnn1.jpg" alt="fully connected" width="100%" /></center>
+
+## Propiedades de las señales naturales
+- Las señales pueden ser representadas como vectores
+    - Valores de los pixeles 
+    - Amplitudes de las formas de onda en el tiempo
+- Propiedades
+    - Estacionalidad: La correlación cruzada de muchas señales es periódica y es grande para valores cercanos a 0, $T$, $2T$, ...
+        - "El mismo patrón aparece múltiples veces en la misma señal"
+        - Conduce a la capacidad de compartir parámetros (*weight sharing*): Se asume que las relaciones son periódicas.
+            - Mejora: 
+                - Convergencia (menos parámetros)
+                - Generalización (patrón se puede repetir a lo largo de la señal)
+                - No restringe al tamaño de la entrada (el patrón puede estar en cualquier lugar de la señal)
+                - Paralelizable (cada parámetro puede ser entrenado de manerja individual)
+    - Localidad: Información similar generalmente está agrupada localmente en regiones específicas
+        - Conduce a escasez (*sparsity*): Para entender qué hay en una región de la señal, no es necesario ver qué hay lejos de ella.
+            - Mejora: necesita menos parámetros $\rightarrow$ computación más rápida.
+    - Composicionalidad: Las señales están hechas de *cosas pequeñas* (de manera jerárquida)
 
 ## Usos de las redes convolucionales
 - Señales multidimensionales
@@ -57,3 +82,5 @@ $$y_i=\sum_{kl}w_{kl}x_{(i+k,j+l)}$$
     - Imágenes biomédicas
     - Video
     - Imágenes multiespectrales
+- Solo es buena idea si las señales de entrada cumplen con propiedades de localidad, estacionalidad y composicionalidad.
+    - Siempre que se usen CNNs, validar esto!
