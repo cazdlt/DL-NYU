@@ -3,7 +3,7 @@
 [Material](https://atcold.github.io/pytorch-Deep-Learning/en/week02/02/)
 
 [Video](https://www.youtube.com/watch?v=d9vdh3b787Y&list=PLLHTzKZzVU9eaEyErdV26ikyolxOsz6mq&index=3)
-## Modelos parametrzados
+## Modelos parametrizados
 $\hat y=G(x,w)$
 
 Donde $x$ es la entrada y $w$ son los *parámetros* del modelo

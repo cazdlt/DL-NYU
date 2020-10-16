@@ -32,7 +32,7 @@ $$y_i=\sum_{kl}w_{kl}x_{(i+k,j+l)}$$
     - Avg. Pooling + Subsampling
     - Stride
     - Kernel 5x5
-<center><img src="../img/lenet.png" alt="fully connected" width="100%" /></center>
+<center><img style="filter:invert()" src="../img/lenet.png" alt="fully connected" width="100%" /></center>
 
 - Aprende representaciones **jerárquicas** en el entrenamiento
     - Primeras capas -> características de bajo nivel (rayas, bolas)
@@ -84,3 +84,6 @@ $$y_i=\sum_{kl}w_{kl}x_{(i+k,j+l)}$$
     - Imágenes multiespectrales
 - Solo es buena idea si las señales de entrada cumplen con propiedades de localidad, estacionalidad y composicionalidad.
     - Siempre que se usen CNNs, validar esto!
+
+## Álgebra lineal
+La primera parte de [este video](https://www.youtube.com/watch?v=OrBEon3VlQg&list=PLLHTzKZzVU9eaEyErdV26ikyolxOsz6mq&index=7) tiene una muy buena explicación del álgebra detrás de las multiplicaciones de matrices para deep learning y convoluciones.
