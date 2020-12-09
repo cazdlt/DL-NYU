@@ -3,6 +3,11 @@
 - Para hacer Backpropagation: desenrollar el ciclo en el tiempo (*unroll the loop*)
     - Backpropagation though time
     - A veces tiene problemas de *vanishing gradients*
+- Alternativas que solucionan algunos problemas:
+    - Gated Recurrent Units (GRU)
+    - Long Short Term Memory (LSTM)
+    - Utilizan celdas de memoria
+
 
 ## Módulos multiplicativos
 - Módulos en los que los pesos son calculados a partir de otra matriz de pesos (u otra red neuronal)
@@ -14,13 +19,7 @@
     - La salida $s$ es una representación vectorial de dos entradas $x_1$ y $x_2$, tomando a $softmax(z)$ (otro vector que puede ser salida de una red) como parámetro.
     - Esta representación también es aprendida
 
-## Gated Recurrent Units (GRU)
-- Utiliza celdas de memoria
-<center><img style="filter:invert()" src="../img/gru.png" alt="fully connected" width="100%" /></center>
 
-## Long Short Term Memory (LSTM)
-- También celdas de memoria
-<center><img style="filter:invert()" src="../img/lstm.png" alt="fully connected" width="100%" /></center>
 
 ## Seq2Seq
 - Se entrenó un LSTM multicapa
@@ -47,3 +46,59 @@
 - RNNs se utilizaban para NLP y reconocimiento de voz (*speech*)
     - *Speech recognition* se está moviendo hacia CNNs
     - NLP/NLU se está moviendo hacia Transformers (Memoria + Atención)
+
+# Clase de Alfredo
+## RNNs
+<center><img src="../img/rnn.png" alt="fully connected" width="100%" /></center>
+
+- Tratan con señales secuenciales
+    - Principalmente señales unidimensionales (dependientes del tiempo)
+- La salida de la red depende del *estado del sistema* y de la entrada actual
+- Tipos de redes recurrentes
+    
+
+    - $vec \rightarrow seq$  (autorregressive): Red a la que uno le realimenta su propia salida.
+        <center><img src="../img/vec_seq.png" alt="fully connected" width="100%" /></center>
+
+        - ej. imagen -> sequencia de palabras (frase)
+    - $seq \rightarrow vec$
+        <center><img src="../img/seq2vec.png" alt="fully connected" width="100%" /></center>
+
+        - ej. posible intérprete de python
+    - $seq \rightarrow vec \rightarrow seq$ (encoder - decoder): aprende relaciones semánticas en texto (word2vec)
+        <center><img src="../img/seq2vec2seq.png" alt="fully connected" width="100%" /></center>
+
+        - ej. forma anterior de hacer traducción (ahora transformers)
+        <center><img src="../img/word2vec.png" alt="fully connected" width="100%" /></center>
+
+    - $seq \rightarrow seq$
+        <center><img src="../img/seq2seq.png" alt="fully connected" width="100%" /></center>
+
+        - ej. autocompletado de texto
+
+### Entrenamiento
+- Backpropagation Through Time (BPTT)
+- Se *desenrolla* el backprop a través del tiempo
+    - Hay una bandera para parar la computación del gradiente
+    - Los pesos son compartidos a través del tiempo
+    - Se pueden representar pesos distintos para la entrada y para el estado
+<center><img src="../img/bptt.png" alt="fully connected" width="100%" /></center>
+
+Donde,
+$$h[t]=g(W_h[x[t],h[t-1]]+b_h)\\W_h=[W_{hx},W_{hh}]\\\hat y[t]=g(W_yh[t]+b_y)$$
+
+- Para evitar *vanishing gradients*:
+    - LSTM
+## Long Short Term Memory (LSTM)
+- *Gated RNN*
+- Compuestas por
+    - Memoria
+    - Compuertas
+    - Entradas
+        - Input
+        - State
+    - Todos los componentes son *controlables* por la red
+
+## Notebooks vistos
+- 08-seq_classification.ipynb
+- 09-echo-data.ipynb
