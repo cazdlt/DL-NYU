@@ -1,0 +1,38 @@
+# Modelos basados en energía
+- ej. *Graphical model*
+- Inferencia basada en restricciones
+    - A través de *funciones implícitas*
+        - En cálculo, ej. función implícita: $x²+y²=1$
+    - Captura la dependencia entre $y$ y $x$
+- Pueden haber múltiples soluciones
+- Función de energía $F(x,y)$:
+    - Toma valores pequeños cuando "$y$ es compatible con $x$"
+    - Inferencia
+        - $\hat y = \argmin_yF(x,y)$
+            - Busca valores que hacen a $y$ pequeño
+        - Pueden haber múltiples soluciones
+## Modelos con variables latentes
+- Variables latentes: Variables cuyo valor no es dado
+    - ej. 
+        - Posición de los caracteres de una palabra escrita a mano
+        - Separación de palabras en una frase hablada 
+- Ahora: $\hat y, \hat z=\argmin_{y,z}E(x,y,z)$
+    - $z$ puede variar sobre un conjunto
+- Útil cuando hay múltiples posibles salidas al sistema
+    - Predicción de video
+    - Traducción
+    - Síntesis de imágenes
+- La variable latente parametriza la salida
+## Entrenamiento
+- Es necesario parametrizar F
+- Métodos de aprendizaje:
+    - Contrastivos
+        - Max-Likelihood
+        - Denoising Autoencoder
+        - Métodos adversariales (GANs)
+        - Masked Autoencoders (BERT)
+    - Arquitecturales
+        - PCA
+        - KMeans
+        - VAEs
+        - Sparse Autoencoders
